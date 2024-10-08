@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+
+  db:
+    image: postgres:15.2
+    container_name: db_bitacora
+    restart: always
+    volumes:
+      - ./db/dump.sql:/docker-entrypoint-initdb.d/dump.sql
+      #- ./db/data.sql:/docker-entrypoint-initdb.d/data.sql
+    environment:
+      - POSTGRES_DB=bitacora
+      - POSTGRES_USER=adm
+      - POSTGRES_PASSWORD=1234
+    ports:
+      - "5432:5432"
